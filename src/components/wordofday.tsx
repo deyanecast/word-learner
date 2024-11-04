@@ -9,6 +9,8 @@ interface Word {
   significado: string;
   ejemplo: string;
   pronunciacion: string;
+  sinonimos: string[];
+  antonimos: string[];
 }
 
 export default function WordOfDay() {
@@ -74,6 +76,30 @@ export default function WordOfDay() {
             </div>
             <p className="pixel-art-meaning">{word?.significado}</p>
             <p className="pixel-art-example">{word?.ejemplo}</p>
+            
+            {/* Sinónimos */}
+            {word?.sinonimos && word.sinonimos.length > 0 && (
+              <div className="pixel-art-synonyms mt-4">
+                <h3 className="text-sm font-bold text-orange-300">Sinónimos:</h3>
+                <ul className="text-sm text-gray-300">
+                  {word.sinonimos.map((sinonimo, index) => (
+                    <li key={index} className="ml-2">{sinonimo}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Antónimos */}
+            {word?.antonimos && word.antonimos.length > 0 && (
+              <div className="pixel-art-antonyms mt-2">
+                <h3 className="text-sm font-bold text-orange-300">Antónimos:</h3>
+                <ul className="text-sm text-gray-300">
+                  {word.antonimos.map((antonimo, index) => (
+                    <li key={index} className="ml-2">{antonimo}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
           <div className="flames">
             <div className="flame"></div>
@@ -88,7 +114,7 @@ export default function WordOfDay() {
         }
         .scene {
           width: 300px;
-          height: 400px;
+          height: 500px;
           perspective: 1000px;
         }
         .pixel-art-card {
